@@ -4,11 +4,11 @@ import React, { useState } from "react";
 
 type Player = "X" | "O" | null;
 
-const TickTockToe: React.FC = () => {
+export default function TickPage() {
   const [squares, setSquares] = useState<Player[]>(Array(9).fill(null));
   const [xIsNext, setXIsNext] = useState(true);
 
-  const calculateWinner = (squares: Player[]): Player | null => {
+  const calculateWinner = (currentSquares: Player[]): Player | null => {
     const lines = [
       [0, 1, 2],
       [3, 4, 5],
@@ -19,19 +19,23 @@ const TickTockToe: React.FC = () => {
       [0, 4, 8],
       [2, 4, 6],
     ];
-    for (let [a, b, c] of lines) {
-      if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-        return squares[a];
+    for (const [a, b, c] of lines) {
+      if (
+        currentSquares[a] &&
+        currentSquares[a] === currentSquares[b] &&
+        currentSquares[a] === currentSquares[c]
+      ) {
+        return currentSquares[a];
       }
     }
     return null;
   };
 
-  const handleClick = (i: number) => {
-    if (squares[i] || calculateWinner(squares)) return;
-    const newSquares = squares.slice();
-    newSquares[i] = xIsNext ? "X" : "O";
-    setSquares(newSquares);
+  const handleClick = (index: number) => {
+    if (squares[index] || calculateWinner(squares)) return;
+    const nextSquares = squares.slice();
+    nextSquares[index] = xIsNext ? "X" : "O";
+    setSquares(nextSquares);
     setXIsNext(!xIsNext);
   };
 
@@ -91,6 +95,5 @@ const TickTockToe: React.FC = () => {
       </button>
     </div>
   );
-};
-
-export default TickTockToe;
+}
+ 
