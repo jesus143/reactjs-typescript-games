@@ -3,7 +3,11 @@ import Link from 'next/link';
 export default function Page() {
   return (
     <main>
-        <h1>Welcome to my games --- update</h1>
+
+
+        <h1>Welcome to my games</h1>
+
+
         <nav>
           <ul>
             <li>
@@ -20,7 +24,16 @@ export default function Page() {
             </li>
           </ul>
         </nav>
+  
+      <div> </div>
+      <b> Sr. Software Engineer Engr. </b>
+        <img src="./author.jpg" alt="Logo" width={100} height={100} />
+
+        
     </main>
+
+
+
   );
 }
 
